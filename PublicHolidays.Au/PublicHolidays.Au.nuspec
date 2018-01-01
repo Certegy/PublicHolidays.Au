@@ -2,14 +2,14 @@
 <package >
   <metadata>
     <id>PublicHolidays.Au</id>
-    <version>1.0.10</version>
+    <version>1.1.0</version>
     <title>PublicHolidays.Au</title>
     <authors>Ryan Bartsch</authors>
     <owners>yesmarket</owners>
     <licenseUrl>https://opensource.org/licenses/MIT</licenseUrl>
     <projectUrl>https://github.com/yesmarket/PublicHolidays.Au</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Utility for date calculations that takes Australian public holidays into consideration.</description>
-    <tags>PublicHolidays Australia</tags>
+    <description>Utility for date calculations that takes Australian and New Zealand public holidays into consideration.</description>
+    <tags>PublicHolidays Australia New-Zealand</tags>
   </metadata>
 </package>
