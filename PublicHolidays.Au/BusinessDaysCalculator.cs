@@ -2,27 +2,24 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using PublicHolidays.Au.Internal.Extensions;
-using PublicHolidays.Au.Internal.PublicHolidays;
-using PublicHolidays.Au.Internal.Support;
-using AuPublicHolidays = PublicHolidays.Au.Internal.Helpers.PublicHolidays;
 
 namespace PublicHolidays.Au
 {
     public sealed class BusinessDaysCalculator : IBusinessDaysCalculator, IStartingFromBusinessDaysCalculator
     {
-        private readonly IEnumerable<IPublicHoliday> _publicHolidays;
+        private IPublicHolidayCalculator _publicHolidayCalculator;
         private DateTime _start;
         private Region? _region;
 
         public BusinessDaysCalculator()
-            : this(AuPublicHolidays.Get.All)
+            : this(new PublicHolidayCalculator())
         {
         }
 
         internal BusinessDaysCalculator(
-            IEnumerable<IPublicHoliday> publicHolidays)
+            IPublicHolidayCalculator publicHolidayCalculator)
         {
-            _publicHolidays = publicHolidays;
+            _publicHolidayCalculator = publicHolidayCalculator;
         }
 
         public IBusinessDaysCalculator In(Region region)
@@ -53,14 +50,7 @@ namespace PublicHolidays.Au
             for (var i = 0; i < years; i++)
             {
                 var year = _start.AddYears(i*Math.Sign(days)).Year;
-                dates.AddRange(
-                    _publicHolidays
-                        .Where(_ => 
-                            _.Regions.HasFlag(region) &&
-                            !_.Traits.HasFlag(Trait.NotAllPostcodes) &&
-                            !_.Traits.HasFlag(Trait.IndustrySpecific))
-                        .SelectMany(_ => _.GetPublicHolidayDatesFor(region).In(year))
-                        .ToList());
+                dates.AddRange(_publicHolidayCalculator.GetPublicHolidaysFor(region, year));
             }
 
             return dates;

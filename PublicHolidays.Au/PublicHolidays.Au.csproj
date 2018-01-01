@@ -86,8 +86,10 @@
     <Compile Include="Internal\Support\Month.cs" />
     <Compile Include="Internal\Support\Ordinal.cs" />
     <Compile Include="Internal\Support\Trait.cs" />
+    <Compile Include="IPublicHolidayCalculator.cs" />
     <Compile Include="IStartingFromBusinessDaysCalculator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PublicHolidayCalculator.cs" />
     <Compile Include="Region.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -30,5 +30,17 @@ namespace PublicHolidays.Au
 
             return dateTime;
         }
+
+        public static bool IsPublicHoliday(this DateTime value, Region region)
+        {
+            var publicHolidayCalculator = new PublicHolidayCalculator();
+            return publicHolidayCalculator.IsPublicHoliday(value, region);
+        }
+
+        public static bool IsWeekendOrPublicHoliday(this DateTime value, Region region)
+        {
+            var dayOfWeek = value.DayOfWeek;
+            return dayOfWeek == DayOfWeek.Saturday || dayOfWeek == DayOfWeek.Sunday || value.IsPublicHoliday(region);
+        }
     }
 }
