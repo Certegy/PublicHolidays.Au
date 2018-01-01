@@ -4,7 +4,7 @@ namespace PublicHolidays.Au
 {
     public interface IBusinessDaysCalculator
     {
-        IBusinessDaysCalculator In(State state);
+        IBusinessDaysCalculator In(Region region);
         IStartingFromBusinessDaysCalculator StartingFrom(DateTime startDate);
     }
 }

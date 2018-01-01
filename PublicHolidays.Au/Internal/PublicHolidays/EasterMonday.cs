@@ -20,15 +20,15 @@ namespace PublicHolidays.Au.Internal.PublicHolidays
             _computus = computus;
         }
 
-        public State States => State.National;
+        public Region Regions => Region.ANZ;
         public Trait Traits => Trait.AllPostcodes;
 
-        public string GetNameOfPublicHolidayIn(State state)
+        public string GetNameOfPublicHolidayIn(Region region)
         {
             return nameof(EasterMonday).ToSentence();
         }
 
-        public IIn GetPublicHolidayDatesFor(State state)
+        public IIn GetPublicHolidayDatesFor(Region region)
         {
             return this;
         }

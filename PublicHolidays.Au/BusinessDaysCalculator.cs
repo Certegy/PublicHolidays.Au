@@ -12,7 +12,7 @@ namespace PublicHolidays.Au
     {
         private readonly IEnumerable<IPublicHoliday> _publicHolidays;
         private DateTime _start;
-        private State? _state;
+        private Region? _region;
 
         public BusinessDaysCalculator()
             : this(AuPublicHolidays.Get.All)
@@ -25,9 +25,9 @@ namespace PublicHolidays.Au
             _publicHolidays = publicHolidays;
         }
 
-        public IBusinessDaysCalculator In(State state)
+        public IBusinessDaysCalculator In(Region region)
         {
-            _state = state;
+            this._region = region;
             return this;
         }
 
@@ -39,13 +39,13 @@ namespace PublicHolidays.Au
 
         public DateTime AddBusinessDays(int numberOfDays)
         {
-            var state = _state ?? State.National;
+            var state = _region ?? Region.AU;
             var excludedDates = GetExclusions(numberOfDays, state);
 
             return GetWorkDays(numberOfDays, excludedDates).Last();
         }
 
-        private List<DateTime> GetExclusions(int days, State state)
+        private List<DateTime> GetExclusions(int days, Region region)
         {
             var years = Math.Ceiling(Math.Abs(days)/365M) + 1;
 
@@ -55,11 +55,11 @@ namespace PublicHolidays.Au
                 var year = _start.AddYears(i*Math.Sign(days)).Year;
                 dates.AddRange(
                     _publicHolidays
-                        .Where(_ =>
-                            _.States.HasFlag(state) &&
+                        .Where(_ => 
+                            _.Regions.HasFlag(region) &&
                             !_.Traits.HasFlag(Trait.NotAllPostcodes) &&
                             !_.Traits.HasFlag(Trait.IndustrySpecific))
-                        .SelectMany(_ => _.GetPublicHolidayDatesFor(state).In(year))
+                        .SelectMany(_ => _.GetPublicHolidayDatesFor(region).In(year))
                         .ToList());
             }
 

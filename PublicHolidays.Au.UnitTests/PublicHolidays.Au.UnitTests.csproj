@@ -71,6 +71,7 @@
     <Compile Include="Internal\PublicHolidays\AustraliaDayTests.cs" />
     <Compile Include="Internal\PublicHolidays\BoxingDayTests.cs" />
     <Compile Include="Internal\PublicHolidays\ChristmasDayTests.cs" />
+    <Compile Include="Internal\PublicHolidays\DayAfterNewYearsDayTests.cs" />
     <Compile Include="Internal\PublicHolidays\EasterMondayTests.cs" />
     <Compile Include="Internal\PublicHolidays\EasterSaturdayTests.cs" />
     <Compile Include="Internal\PublicHolidays\EasterSundayTests.cs" />
@@ -83,6 +84,7 @@
     <Compile Include="Internal\PublicHolidays\NewYearsDayTests.cs" />
     <Compile Include="Internal\PublicHolidays\PicnicDay.cs" />
     <Compile Include="Internal\PublicHolidays\QueensBirthdayTests.cs" />
+    <Compile Include="Internal\PublicHolidays\WaitangiDayTests.cs" />
     <Compile Include="Internal\PublicHolidays\WesternAustraliaDayTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

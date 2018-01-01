@@ -17,14 +17,14 @@ namespace PublicHolidays.Au.UnitTests.Internal.PublicHolidays
         [Fact]
         public void GetPublicHolidayDatesFor_MatchingState_DoesNotShortCircuit()
         {
-            var result = _picnicDay.GetPublicHolidayDatesFor(State.NT);
+            var result = _picnicDay.GetPublicHolidayDatesFor(Region.NT);
             result.ShouldNotBeOfType<ShortCircuit>();
         }
 
         [Fact]
         public void GetPublicHolidayDatesFor_NonMatchingState_ShortCircuits()
         {
-            var result = _picnicDay.GetPublicHolidayDatesFor(State.SA);
+            var result = _picnicDay.GetPublicHolidayDatesFor(Region.SA);
             result.ShouldBeOfType<ShortCircuit>();
         }
 
@@ -39,7 +39,7 @@ namespace PublicHolidays.Au.UnitTests.Internal.PublicHolidays
         [Fact]
         public void GetNameOfPublicHolidayIn_Any_ReturnsCorrectName()
         {
-            var name = _picnicDay.GetNameOfPublicHolidayIn(State.National);
+            var name = _picnicDay.GetNameOfPublicHolidayIn(Region.NT);
             name.ShouldBe("Picnic Day");
         }
     }

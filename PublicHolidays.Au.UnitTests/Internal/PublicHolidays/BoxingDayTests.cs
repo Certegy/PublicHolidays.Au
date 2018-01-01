@@ -49,14 +49,21 @@ namespace PublicHolidays.Au.UnitTests.Internal.PublicHolidays
         [Fact]
         public void GetNameOfPublicHolidayIn_SA_ReturnsCorrectName()
         {
-            var name = _boxingDay.GetNameOfPublicHolidayIn(State.SA);
+            var name = _boxingDay.GetNameOfPublicHolidayIn(Region.SA);
             name.ShouldBe("Proclamation Day");
         }
 
         [Fact]
         public void GetNameOfPublicHolidayIn_NotSA_ReturnsCorrectName()
         {
-            var name = _boxingDay.GetNameOfPublicHolidayIn(State.National);
+            var name = _boxingDay.GetNameOfPublicHolidayIn(Region.VIC);
+            name.ShouldBe("Boxing Day");
+        }
+
+        [Fact]
+        public void GetNameOfPublicHolidayIn_NZ_ReturnsCorrectName()
+        {
+            var name = _boxingDay.GetNameOfPublicHolidayIn(Region.NZ);
             name.ShouldBe("Boxing Day");
         }
     }

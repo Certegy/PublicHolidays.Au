@@ -1,12 +1,13 @@
+using System;
 using PublicHolidays.Au.Internal.Support;
 
 namespace PublicHolidays.Au.Internal.PublicHolidays
 {
     public interface IPublicHoliday
     {
-        State States { get; }
+        Region Regions { get; }
         Trait Traits { get; }
-        string GetNameOfPublicHolidayIn(State state);
-        IIn GetPublicHolidayDatesFor(State state);
+        string GetNameOfPublicHolidayIn(Region region);
+        IIn GetPublicHolidayDatesFor(Region region);
     }
 }

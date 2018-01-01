@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>PublicHolidays.Au</id>
-    <version>$version$</version>
+    <version>1.0.10</version>
     <title>PublicHolidays.Au</title>
     <authors>Ryan Bartsch</authors>
     <owners>yesmarket</owners>

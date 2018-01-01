@@ -1,18 +1,19 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
-using PublicHolidays.Au.Internal.Extensions;
 using PublicHolidays.Au.Internal.Support;
+using PublicHolidays.Au.Internal.Extensions;
 
 namespace PublicHolidays.Au.Internal.PublicHolidays
 {
-    public sealed class GrandFinalEve : IPublicHoliday, IIn
+    public sealed class DayAfterNewYearsDay : IPublicHoliday, IIn
     {
-        public Region Regions => Region.VIC;
+        public Region Regions => Region.NZ;
+
         public Trait Traits => Trait.AllPostcodes;
 
         public string GetNameOfPublicHolidayIn(Region region)
         {
-            return nameof(GrandFinalEve).ToSentence();
+            return nameof(DayAfterNewYearsDay).ToSentence();
         }
 
         public IIn GetPublicHolidayDatesFor(Region region)
@@ -22,8 +23,12 @@ namespace PublicHolidays.Au.Internal.PublicHolidays
 
         public IEnumerable<DateTime> In(int year)
         {
-            // Cannot accurately calculate date of AFL grand final.
-            return new List<DateTime>();
+            return
+                new DateTime(year, 1, 2)
+                    .Shift(
+                        saturday => saturday.AddDays(2),
+                        sunday => sunday.AddDays(2),
+                        monday => monday.AddDays(1));
         }
     }
 }

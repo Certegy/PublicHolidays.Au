@@ -19,14 +19,14 @@ namespace PublicHolidays.Au.UnitTests.Internal.PublicHolidays
         [Fact]
         public void GetPublicHolidayDatesFor_MatchingState_DoesNotShortCircuit()
         {
-            var result = _canberraDay.GetPublicHolidayDatesFor(State.ACT);
+            var result = _canberraDay.GetPublicHolidayDatesFor(Region.ACT);
             result.ShouldNotBeOfType<ShortCircuit>();
         }
 
         [Fact]
         public void GetPublicHolidayDatesFor_NonMatchingState_ShortCircuits()
         {
-            var result = _canberraDay.GetPublicHolidayDatesFor(State.NSW);
+            var result = _canberraDay.GetPublicHolidayDatesFor(Region.NSW);
             result.ShouldBeOfType<ShortCircuit>();
         }
 
@@ -41,7 +41,7 @@ namespace PublicHolidays.Au.UnitTests.Internal.PublicHolidays
         [Fact]
         public void GetNameOfPublicHolidayIn_Any_ReturnsCorrectName()
         {
-            var name = _canberraDay.GetNameOfPublicHolidayIn(State.National);
+            var name = _canberraDay.GetNameOfPublicHolidayIn(Region.AU);
             name.ShouldBe("Canberra Day");
         }
     }

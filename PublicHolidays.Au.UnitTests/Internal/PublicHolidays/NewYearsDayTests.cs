@@ -33,7 +33,7 @@ namespace PublicHolidays.Au.UnitTests.Internal.PublicHolidays
         [Fact]
         public void GetNameOfPublicHolidayIn_Any_ReturnsCorrectName()
         {
-            var name = _newYearsDay.GetNameOfPublicHolidayIn(State.National);
+            var name = _newYearsDay.GetNameOfPublicHolidayIn(Region.ANZ);
             name.ShouldBe("New Years Day");
         }
     }

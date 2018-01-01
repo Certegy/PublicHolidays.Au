@@ -9,7 +9,7 @@ namespace PublicHolidays.Au.Internal.PublicHolidays
     public sealed class LabourDay : IPublicHoliday, IIn
     {
         private readonly IDateOfMonthCalculator _dateOfMonthCalculator;
-        private State _state;
+        private Region region;
 
         public LabourDay()
             : this(new DefaultDateOfMonthCalculator())
@@ -21,25 +21,25 @@ namespace PublicHolidays.Au.Internal.PublicHolidays
             _dateOfMonthCalculator = dateOfMonthCalculator;
         }
 
-        public State States => State.National;
+        public Region Regions => Region.ANZ;
         public Trait Traits => Trait.AllPostcodes;
 
-        public string GetNameOfPublicHolidayIn(State state)
+        public string GetNameOfPublicHolidayIn(Region region)
         {
-            switch (state)
+            switch (region)
             {
-                case State.NT:
+                case Region.NT:
                     return "May Day";
-                case State.TAS:
+                case Region.TAS:
                     return "Eight Hours Day";
                 default:
                     return nameof(LabourDay).ToSentence();
             }
         }
 
-        public IIn GetPublicHolidayDatesFor(State state)
+        public IIn GetPublicHolidayDatesFor(Region region)
         {
-            _state = state;
+            this.region = region;
             return this;
         }
 
@@ -47,23 +47,26 @@ namespace PublicHolidays.Au.Internal.PublicHolidays
         {
             var dates = new List<DateTime>();
 
-            switch (_state)
+            switch (region)
             {
-                case State.WA:
+                case Region.WA:
                     dates.Add(_dateOfMonthCalculator.Find(Ordinal.First, DayOfWeek.Monday).In(Month.March).For(year));
                     break;
-                case State.TAS:
-                case State.VIC:
+                case Region.TAS:
+                case Region.VIC:
                     dates.Add(_dateOfMonthCalculator.Find(Ordinal.Second, DayOfWeek.Monday).In(Month.March).For(year));
                     break;
-                case State.QLD:
-                case State.NT:
+                case Region.QLD:
+                case Region.NT:
                     dates.Add(_dateOfMonthCalculator.Find(Ordinal.First, DayOfWeek.Monday).In(Month.May).For(year));
                     break;
-                case State.NSW:
-                case State.ACT:
-                case State.SA:
+                case Region.NSW:
+                case Region.ACT:
+                case Region.SA:
                     dates.Add(_dateOfMonthCalculator.Find(Ordinal.First, DayOfWeek.Monday).In(Month.October).For(year));
+                    break;
+                case Region.NZ:
+                    dates.Add(_dateOfMonthCalculator.Find(Ordinal.Fourth, DayOfWeek.Monday).In(Month.October).For(year));
                     break;
             }
 
