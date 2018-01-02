@@ -24,7 +24,7 @@ namespace PublicHolidays.Au
 
         public IBusinessDaysCalculator In(Region region)
         {
-            this._region = region;
+            _region = region;
             return this;
         }
 
