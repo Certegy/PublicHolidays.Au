@@ -2,32 +2,29 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using PublicHolidays.Au.Internal.Extensions;
-using PublicHolidays.Au.Internal.PublicHolidays;
-using PublicHolidays.Au.Internal.Support;
-using AuPublicHolidays = PublicHolidays.Au.Internal.Helpers.PublicHolidays;
 
 namespace PublicHolidays.Au
 {
     public sealed class BusinessDaysCalculator : IBusinessDaysCalculator, IStartingFromBusinessDaysCalculator
     {
-        private readonly IEnumerable<IPublicHoliday> _publicHolidays;
+        private IPublicHolidayCalculator _publicHolidayCalculator;
         private DateTime _start;
-        private State? _state;
+        private Region? _region;
 
         public BusinessDaysCalculator()
-            : this(AuPublicHolidays.Get.All)
+            : this(new PublicHolidayCalculator())
         {
         }
 
         internal BusinessDaysCalculator(
-            IEnumerable<IPublicHoliday> publicHolidays)
+            IPublicHolidayCalculator publicHolidayCalculator)
         {
-            _publicHolidays = publicHolidays;
+            _publicHolidayCalculator = publicHolidayCalculator;
         }
 
-        public IBusinessDaysCalculator In(State state)
+        public IBusinessDaysCalculator In(Region region)
         {
-            _state = state;
+            _region = region;
             return this;
         }
 
@@ -39,13 +36,13 @@ namespace PublicHolidays.Au
 
         public DateTime AddBusinessDays(int numberOfDays)
         {
-            var state = _state ?? State.National;
+            var state = _region ?? Region.AU;
             var excludedDates = GetExclusions(numberOfDays, state);
 
             return GetWorkDays(numberOfDays, excludedDates).Last();
         }
 
-        private List<DateTime> GetExclusions(int days, State state)
+        private List<DateTime> GetExclusions(int days, Region region)
         {
             var years = Math.Ceiling(Math.Abs(days)/365M) + 1;
 
@@ -53,14 +50,7 @@ namespace PublicHolidays.Au
             for (var i = 0; i < years; i++)
             {
                 var year = _start.AddYears(i*Math.Sign(days)).Year;
-                dates.AddRange(
-                    _publicHolidays
-                        .Where(_ =>
-                            _.States.HasFlag(state) &&
-                            !_.Traits.HasFlag(Trait.NotAllPostcodes) &&
-                            !_.Traits.HasFlag(Trait.IndustrySpecific))
-                        .SelectMany(_ => _.GetPublicHolidayDatesFor(state).In(year))
-                        .ToList());
+                dates.AddRange(_publicHolidayCalculator.GetPublicHolidaysFor(region, year));
             }
 
             return dates;

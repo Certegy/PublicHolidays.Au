@@ -66,11 +66,13 @@
   <ItemGroup>
     <Compile Include="BusinessDaysCalculatorTests.cs" />
     <Compile Include="DateTimeExtensionsTests.cs" />
+    <Compile Include="Extensions\EnumerableExtensions.cs" />
     <Compile Include="Internal\DefaultDateOfMonthCalculator\DefaultDateOfMonthCalculatorTests.cs" />
     <Compile Include="Internal\PublicHolidays\AnzacDayTests.cs" />
     <Compile Include="Internal\PublicHolidays\AustraliaDayTests.cs" />
     <Compile Include="Internal\PublicHolidays\BoxingDayTests.cs" />
     <Compile Include="Internal\PublicHolidays\ChristmasDayTests.cs" />
+    <Compile Include="Internal\PublicHolidays\DayAfterNewYearsDayTests.cs" />
     <Compile Include="Internal\PublicHolidays\EasterMondayTests.cs" />
     <Compile Include="Internal\PublicHolidays\EasterSaturdayTests.cs" />
     <Compile Include="Internal\PublicHolidays\EasterSundayTests.cs" />
@@ -83,8 +85,10 @@
     <Compile Include="Internal\PublicHolidays\NewYearsDayTests.cs" />
     <Compile Include="Internal\PublicHolidays\PicnicDay.cs" />
     <Compile Include="Internal\PublicHolidays\QueensBirthdayTests.cs" />
+    <Compile Include="Internal\PublicHolidays\WaitangiDayTests.cs" />
     <Compile Include="Internal\PublicHolidays\WesternAustraliaDayTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PublicHolidayCalculatorTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

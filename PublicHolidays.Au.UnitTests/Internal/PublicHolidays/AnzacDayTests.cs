@@ -41,7 +41,7 @@ namespace PublicHolidays.Au.UnitTests.Internal.PublicHolidays
         [Fact]
         public void GetNameOfPublicHolidayIn_Any_ReturnsCorrectName()
         {
-            var name = _anzacDay.GetNameOfPublicHolidayIn(State.National);
+            var name = _anzacDay.GetNameOfPublicHolidayIn(Region.ANZ);
             name.ShouldBe("Anzac Day");
         }
     }

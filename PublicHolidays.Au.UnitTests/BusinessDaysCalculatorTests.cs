@@ -37,14 +37,14 @@ namespace PublicHolidays.Au.UnitTests
         [Fact]
         public void AddBusinessDays_RangeThatDoesNotGoOverWeekendButIncludesPublicHoliday_ReturnsNumberOfDaysIncludingPublicHolidayAfterStartDate()
         {
-            var dateTime = _businessDaysCalculator.In(State.VIC).StartingFrom(new DateTime(2018, 11, 5)).AddBusinessDays(3);
+            var dateTime = _businessDaysCalculator.In(Region.VIC).StartingFrom(new DateTime(2018, 11, 5)).AddBusinessDays(3);
             dateTime.ShouldBe(new DateTime(2018, 11, 9));
         }
 
         [Fact]
         public void AddBusinessDays_RangeThatIncludesPublicHolidayFromDifferentState_ReturnsExactNumberOfDaysAfterStartDate()
         {
-            var dateTime = _businessDaysCalculator.In(State.SA).StartingFrom(new DateTime(2018, 11, 5)).AddBusinessDays(3);
+            var dateTime = _businessDaysCalculator.In(Region.SA).StartingFrom(new DateTime(2018, 11, 5)).AddBusinessDays(3);
             dateTime.ShouldBe(new DateTime(2018, 11, 8));
         }
 

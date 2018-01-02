@@ -17,14 +17,14 @@ namespace PublicHolidays.Au.UnitTests.Internal.PublicHolidays
         [Fact]
         public void GetPublicHolidayDatesFor_MatchingState_DoesNotShortCircuit()
         {
-            var result = _westernAustraliaDay.GetPublicHolidayDatesFor(State.WA);
+            var result = _westernAustraliaDay.GetPublicHolidayDatesFor(Region.WA);
             result.ShouldNotBeOfType<ShortCircuit>();
         }
 
         [Fact]
         public void GetPublicHolidayDatesFor_NonMatchingState_ShortCircuits()
         {
-            var result = _westernAustraliaDay.GetPublicHolidayDatesFor(State.SA);
+            var result = _westernAustraliaDay.GetPublicHolidayDatesFor(Region.SA);
             result.ShouldBeOfType<ShortCircuit>();
         }
 
@@ -40,7 +40,7 @@ namespace PublicHolidays.Au.UnitTests.Internal.PublicHolidays
         [Fact]
         public void GetNameOfPublicHolidayIn_Any_ReturnsCorrectName()
         {
-            var name = _westernAustraliaDay.GetNameOfPublicHolidayIn(State.National);
+            var name = _westernAustraliaDay.GetNameOfPublicHolidayIn(Region.WA);
             name.ShouldBe("Western Australia Day");
         }
     }

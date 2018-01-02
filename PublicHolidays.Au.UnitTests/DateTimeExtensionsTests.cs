@@ -16,7 +16,7 @@ namespace PublicHolidays.Au.UnitTests
         [Fact]
         public void AddBusinessDays_OneBusinessDaysFromFriday_ShouldReturnFollowingTuesday()
         {
-            var addBusinessDays = new DateTime(2016, 09, 30).AddBusinessDays(1, State.SA);
+            var addBusinessDays = new DateTime(2016, 09, 30).AddBusinessDays(1, Region.SA);
             addBusinessDays.ShouldBe(new DateTime(2016, 10, 4));
         }
 

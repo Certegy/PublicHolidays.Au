@@ -17,14 +17,14 @@ namespace PublicHolidays.Au.UnitTests.Internal.PublicHolidays
         [Fact]
         public void GetPublicHolidayDatesFor_MatchingState_DoesNotShortCircuit()
         {
-            var result = _marchPublicHoliday.GetPublicHolidayDatesFor(State.SA);
+            var result = _marchPublicHoliday.GetPublicHolidayDatesFor(Region.SA);
             result.ShouldNotBeOfType<ShortCircuit>();
         }
 
         [Fact]
         public void GetPublicHolidayDatesFor_NonMatchingState_ShortCircuits()
         {
-            var result = _marchPublicHoliday.GetPublicHolidayDatesFor(State.NSW);
+            var result = _marchPublicHoliday.GetPublicHolidayDatesFor(Region.NSW);
             result.ShouldBeOfType<ShortCircuit>();
         }
 
@@ -46,7 +46,7 @@ namespace PublicHolidays.Au.UnitTests.Internal.PublicHolidays
         [Fact]
         public void GetNameOfPublicHolidayIn_Any_ReturnsCorrectName()
         {
-            var name = _marchPublicHoliday.GetNameOfPublicHolidayIn(State.National);
+            var name = _marchPublicHoliday.GetNameOfPublicHolidayIn(Region.SA);
             name.ShouldBe("March Public Holiday");
         }
     }

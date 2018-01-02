@@ -7,17 +7,17 @@ namespace PublicHolidays.Au.Internal.PublicHolidays
 {
     public sealed class AustraliaDay : IPublicHoliday, IIn
     {
-        public State States => State.National;
+        public Region Regions => Region.AU;
         public Trait Traits => Trait.AllPostcodes;
 
-        public string GetNameOfPublicHolidayIn(State state)
+        public string GetNameOfPublicHolidayIn(Region region)
         {
             return nameof(AustraliaDay).ToSentence();
         }
 
-        public IIn GetPublicHolidayDatesFor(State state)
+        public IIn GetPublicHolidayDatesFor(Region region)
         {
-            return this;
+            return Regions.HasFlag(region) ? this : ShortCircuit.Response();
         }
 
         public IEnumerable<DateTime> In(int year)

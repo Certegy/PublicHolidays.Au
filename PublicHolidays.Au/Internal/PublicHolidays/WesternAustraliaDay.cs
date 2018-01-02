@@ -20,17 +20,17 @@ namespace PublicHolidays.Au.Internal.PublicHolidays
             _dateOfMonthCalculator = dateOfMonthCalculator;
         }
 
-        public State States => State.WA;
+        public Region Regions => Region.WA;
         public Trait Traits => Trait.AllPostcodes;
 
-        public string GetNameOfPublicHolidayIn(State state)
+        public string GetNameOfPublicHolidayIn(Region region)
         {
             return nameof(WesternAustraliaDay).ToSentence();
         }
 
-        public IIn GetPublicHolidayDatesFor(State state)
+        public IIn GetPublicHolidayDatesFor(Region region)
         {
-            return States.HasFlag(state) ? this : ShortCircuit.Response();
+            return Regions.HasFlag(region) ? this : ShortCircuit.Response();
         }
 
         public IEnumerable<DateTime> In(int year)

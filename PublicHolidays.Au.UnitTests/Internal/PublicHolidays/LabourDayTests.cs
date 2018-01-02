@@ -18,77 +18,84 @@ namespace PublicHolidays.Au.UnitTests.Internal.PublicHolidays
         [Fact]
         public void InWA_2017_ReturnsDateOfFirstMondayInMarch()
         {
-            var result = _labourDay.GetPublicHolidayDatesFor(State.WA).In(Year);
+            var result = _labourDay.GetPublicHolidayDatesFor(Region.WA).In(Year);
             result.ShouldContain(new DateTime(Year, 3, 6));
         }
 
         [Fact]
         public void InTAS_2017_ReturnsDateOfSecondMondayInMarch()
         {
-            var result = _labourDay.GetPublicHolidayDatesFor(State.TAS).In(Year);
+            var result = _labourDay.GetPublicHolidayDatesFor(Region.TAS).In(Year);
             result.ShouldContain(new DateTime(Year, 3, 13));
         }
 
         [Fact]
         public void InVIC_2017_ReturnsDateOfSecondMondayInMarch()
         {
-            var result = _labourDay.GetPublicHolidayDatesFor(State.VIC).In(Year);
+            var result = _labourDay.GetPublicHolidayDatesFor(Region.VIC).In(Year);
             result.ShouldContain(new DateTime(Year, 3, 13));
         }
 
         [Fact]
         public void InQLD_2017_ReturnsDateOfFirstMondayInMay()
         {
-            var result = _labourDay.GetPublicHolidayDatesFor(State.QLD).In(Year);
+            var result = _labourDay.GetPublicHolidayDatesFor(Region.QLD).In(Year);
             result.ShouldContain(new DateTime(Year, 5, 1));
         }
 
         [Fact]
         public void InNT_2017_ReturnsDateOfFirstMondayInMay()
         {
-            var result = _labourDay.GetPublicHolidayDatesFor(State.NT).In(Year);
+            var result = _labourDay.GetPublicHolidayDatesFor(Region.NT).In(Year);
             result.ShouldContain(new DateTime(Year, 5, 1));
         }
 
         [Fact]
         public void InNSW_2017_ReturnsDateOfFirstMondayInOctober()
         {
-            var result = _labourDay.GetPublicHolidayDatesFor(State.NSW).In(Year);
+            var result = _labourDay.GetPublicHolidayDatesFor(Region.NSW).In(Year);
             result.ShouldContain(new DateTime(Year, 10, 2));
         }
 
         [Fact]
         public void InACT_2017_ReturnsDateOfFirstMondayInOctober()
         {
-            var result = _labourDay.GetPublicHolidayDatesFor(State.ACT).In(Year);
+            var result = _labourDay.GetPublicHolidayDatesFor(Region.ACT).In(Year);
             result.ShouldContain(new DateTime(Year, 10, 2));
         }
 
         [Fact]
         public void InSA_2017_ReturnsDateOfFirstMondayInOctober()
         {
-            var result = _labourDay.GetPublicHolidayDatesFor(State.SA).In(Year);
+            var result = _labourDay.GetPublicHolidayDatesFor(Region.SA).In(Year);
             result.ShouldContain(new DateTime(Year, 10, 2));
         }
 
         [Fact]
         public void GetNameOfPublicHolidayIn_NT_ReturnsCorrectName()
         {
-            var name = _labourDay.GetNameOfPublicHolidayIn(State.NT);
+            var name = _labourDay.GetNameOfPublicHolidayIn(Region.NT);
             name.ShouldBe("May Day");
         }
 
         [Fact]
         public void GetNameOfPublicHolidayIn_TAS_ReturnsCorrectName()
         {
-            var name = _labourDay.GetNameOfPublicHolidayIn(State.TAS);
+            var name = _labourDay.GetNameOfPublicHolidayIn(Region.TAS);
             name.ShouldBe("Eight Hours Day");
         }
 
         [Fact]
         public void GetNameOfPublicHolidayIn_NeitherNTNorTAS_ReturnsCorrectName()
         {
-            var name = _labourDay.GetNameOfPublicHolidayIn(State.National);
+            var name = _labourDay.GetNameOfPublicHolidayIn(Region.AU);
+            name.ShouldBe("Labour Day");
+        }
+
+        [Fact]
+        public void GetNameOfPublicHolidayIn_NZ_ReturnsCorrectName()
+        {
+            var name = _labourDay.GetNameOfPublicHolidayIn(Region.NZ);
             name.ShouldBe("Labour Day");
         }
     }

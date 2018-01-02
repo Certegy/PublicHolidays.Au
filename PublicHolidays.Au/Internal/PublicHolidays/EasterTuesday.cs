@@ -20,17 +20,17 @@ namespace PublicHolidays.Au.Internal.PublicHolidays
             _computus = computus;
         }
 
-        public State States => State.TAS;
+        public Region Regions => Region.TAS;
         public Trait Traits => Trait.AllPostcodes;
 
-        public string GetNameOfPublicHolidayIn(State state)
+        public string GetNameOfPublicHolidayIn(Region region)
         {
             return nameof(EasterTuesday).ToSentence();
         }
 
-        public IIn GetPublicHolidayDatesFor(State state)
+        public IIn GetPublicHolidayDatesFor(Region region)
         {
-            return States.HasFlag(state) ? this : ShortCircuit.Response();
+            return Regions.HasFlag(region) ? this : ShortCircuit.Response();
         }
 
         public IEnumerable<DateTime> In(int year)

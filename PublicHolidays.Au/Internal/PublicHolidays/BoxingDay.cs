@@ -7,22 +7,27 @@ namespace PublicHolidays.Au.Internal.PublicHolidays
 {
     public sealed class BoxingDay : IPublicHoliday, IIn
     {
-        public State States => State.National;
+        public Region Regions => Region.ANZ;
         public Trait Traits => Trait.AllPostcodes;
 
-        public string GetNameOfPublicHolidayIn(State state)
+        public string GetNameOfPublicHolidayIn(Region region)
         {
-            return state == State.SA ? "Proclamation Day" : nameof(BoxingDay).ToSentence();
+            return region == Region.SA ? "Proclamation Day" : nameof(BoxingDay).ToSentence();
         }
 
-        public IIn GetPublicHolidayDatesFor(State state)
+        public IIn GetPublicHolidayDatesFor(Region region)
         {
             return this;
         }
 
         public IEnumerable<DateTime> In(int year)
         {
-            return new DateTime(year, 12, 26).Shift(saturday => saturday.AddDays(2), sunday => sunday.AddDays(2), monday => monday.AddDays(1));
+            return
+                new DateTime(year, 12, 26)
+                    .Shift(
+                        saturday => saturday.AddDays(2),
+                        sunday => sunday.AddDays(2),
+                        monday => monday.AddDays(1));
         }
     }
 }
